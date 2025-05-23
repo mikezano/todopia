@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { ThreeDButton } from "./ThreeDButton";
 import "./TodoForm.css";
 
@@ -6,20 +7,28 @@ export interface ThreeDButtonProps {
 }
 
 export const TodoForm = ({ onSubmit }: ThreeDButtonProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleNewEntry = () => {
+    if (!inputRef.current) return;
+    onSubmit(inputRef.current.value);
+    inputRef.current.value = "";
+    inputRef.current.focus();
+  };
+
   return (
     <div className="todo-form">
-      <input id="description" type="search" placeholder="...Add item" />
-      <ThreeDButton
-        text="Add"
-        onClick={() => {
-          const input = document.getElementById(
-            "description"
-          ) as HTMLInputElement;
-          onSubmit(input.value);
-          input.value = "";
-          input.focus();
+      <input
+        ref={inputRef}
+        type="search"
+        placeholder="...Add item"
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            handleNewEntry();
+          }
         }}
       />
+      <ThreeDButton text="Add" onClick={handleNewEntry} />
     </div>
   );
 };

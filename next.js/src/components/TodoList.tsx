@@ -20,19 +20,18 @@ export const TodoList = ({ nextTodo }: TodoListProps) => {
       ];
     });
   }, [nextTodo]);
-  const emptyJsx = <p>Add an Item</p>;
-  const hasTodosJsx = todos.map((todo: Item) => (
-    <TodoItem
-      key={todo.id}
-      {...todo}
-      onDelete={() => {
-        setTodos(todos.filter((t) => t.id !== todo.id));
-      }}
-    />
-  ));
-  return todos.length > 0 ? (
-    <ul className="todo-list">{hasTodosJsx}</ul>
-  ) : (
-    emptyJsx
+
+  return (
+    <>
+      {todos.map((todo: Item) => (
+        <TodoItem
+          key={todo.id}
+          {...todo}
+          onDelete={() => {
+            setTodos(todos.filter((t) => t.id !== todo.id));
+          }}
+        />
+      ))}
+    </>
   );
 };
