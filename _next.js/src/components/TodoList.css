@@ -1,0 +1,7 @@
+.todo-list{
+    color:var(--electric-blue);
+    /* border: 0.1rem solid var(--neon-pink); */
+    background: linear-gradient(to right, #111, #333);
+
+    list-style-type:none;
+}

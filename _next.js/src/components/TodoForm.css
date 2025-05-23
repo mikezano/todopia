@@ -1,0 +1,11 @@
+.todo-form{
+    display:flex;
+    gap:1rem;
+    padding:1rem;
+    background: linear-gradient(to left, #111, #333);
+
+    & input{
+        flex:1;
+        font-size:2rem;
+    }
+}
