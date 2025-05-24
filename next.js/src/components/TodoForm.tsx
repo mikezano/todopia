@@ -21,7 +21,7 @@ export const TodoForm = ({ onSubmit }: ThreeDButtonProps) => {
       <input
         ref={inputRef}
         type="search"
-        placeholder="...Add item"
+        placeholder="... Add Todo"
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             handleNewEntry();

@@ -16,7 +16,7 @@ export const TodoList = ({ nextTodo }: TodoListProps) => {
     setTodos((prevTodos) => {
       return [
         ...prevTodos,
-        { id: prevTodos.length + 1, description: nextTodo, completed: false },
+        { id: Date.now(), description: nextTodo, completed: false },
       ];
     });
   }, [nextTodo]);

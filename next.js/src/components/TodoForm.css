@@ -7,6 +7,10 @@
     & input{
         flex:1;
         font-size:2rem;
-        padding:0.4rem;
+        padding:0.4rem 1rem;
+    }
+
+    & input::placeholder{
+        font-style:italic;
     }
 }
