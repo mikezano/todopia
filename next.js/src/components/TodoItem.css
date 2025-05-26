@@ -3,7 +3,10 @@
     align-items:center;
     gap:1rem;
     padding:1rem;
-    
+    background: linear-gradient(to left, #111, #333);
+    transition: background 0.3s ease-in-out;
+
+
     & input{
         width:2rem;
         height:2rem;
@@ -19,7 +22,8 @@
         flex:1;
     }
 
-    & button{
-        /* margin-top:-0.5rem; */
-    }
+}
+
+.todo-item:hover{
+    background: linear-gradient(to right, #111, #333);
 }
