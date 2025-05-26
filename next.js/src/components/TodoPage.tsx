@@ -1,16 +1,28 @@
 "use client";
-import { useState } from "react";
 import { TodoItem } from "../interface/TodoItem";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
 
-export const TodoPage = () => {
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+const postData = async (todoItem: TodoItem) => {
+  const response = await fetch("http://localhost:3001/todos", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...todoItem }),
+  });
 
-  const handleAddTodo = (description: string) => {
+  return await response.json();
+};
+
+export interface TodoPageProps {
+  initialTodos?: TodoItem[];
+  onRefresh: () => Promise<void>;
+}
+
+export const TodoPage = ({ initialTodos, onRefresh }: TodoPageProps) => {
+  const handleAddTodo = async (description: string) => {
     // Check for duplicates (case insensitive)
     if (
-      todos.some(
+      initialTodos?.some(
         (todo) => todo.description.toLowerCase() === description.toLowerCase()
       )
     ) {
@@ -22,17 +34,29 @@ export const TodoPage = () => {
       description,
       completed: false,
     };
-    setTodos([...todos, newTodo]);
+    await postData(newTodo);
+    // Use the onRefresh prop to fetch fresh data
+    await onRefresh();
   };
+  const handleDeleteTodo = async (id: number) => {
+    console.log("Deleting todo with ID:", id);
+    const response = await fetch(`/api/todos/${id}`, {
+      method: "DELETE",
+    });
 
-  const handleDeleteTodo = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    if (!response.ok) {
+      console.error("Failed to delete todo:", await response.text());
+      return;
+    }
+
+    // Refresh the todo list after deletion
+    await onRefresh();
   };
 
   return (
     <div className="todo-page">
       <TodoForm onSubmit={handleAddTodo} />
-      <TodoList todos={todos} onDelete={handleDeleteTodo} />
+      <TodoList todos={initialTodos ?? []} onDelete={handleDeleteTodo} />
     </div>
   );
 };
