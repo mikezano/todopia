@@ -1,10 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import reactLogo from "./assets/react.svg";
+import { TodoForm } from "./components/TodoForm";
+import { TodoList } from "./components/TodoList";
+import type { TodoItem } from "./interface/TodoItem";
+import viteLogo from "/vite.svg";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [items, setItems] = useState<TodoItem[]>([
+    {
+      id: "apple",
+      text: "apple",
+    },
+    {
+      id: "banana",
+      text: "banana",
+    },
+  ]);
+
+  const handleOnDelete = (id: string) => {
+    console.log("going to delete");
+    setItems((previous) => {
+      return previous.filter((item: TodoItem) => item.id !== id);
+    });
+  };
+
+  const handleOnAdd = (text: string) => {
+    setItems((previous) => {
+      return [...previous, { id: Date.now().toString(), text }];
+    });
+  };
 
   return (
     <>
@@ -28,8 +54,10 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <TodoForm onAdd={handleOnAdd}></TodoForm>
+      <TodoList items={items} onDelete={handleOnDelete} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
