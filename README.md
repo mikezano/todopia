@@ -6,7 +6,7 @@ A utopia of todo applications in all the frameworks
 
 # Django
 
-# Blazor
+# Blazor - started
 
 # Vue
 
