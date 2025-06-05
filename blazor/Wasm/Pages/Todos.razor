@@ -1,0 +1,30 @@
+﻿@page "/todos"
+@using Wasm.Components
+<h3>Todos</h3>
+
+<TodoForm OnAdd="HandleAdd"/>
+<TodoList Items="Items" OnDelete="HandleDelete" />
+
+@code {
+    public List<Todo> Items { get; set; } = new List<Todo>()
+    {
+        new Todo { Text = "Learn Blazor", Id = 0 },
+        new Todo { Text = "Build a Blazor app", Id = 1},
+        new Todo { Text = "Deploy to production", Id = 2 }
+    };
+
+    private async Task HandleDelete(int? id)
+    {
+        if (id.HasValue)
+        {
+            Items.RemoveAll(item => item.Id == id.Value);
+        }
+        await Task.CompletedTask; // Simulate async operation
+    }
+
+    private async Task HandleAdd(string text)
+    {
+        Items.Add(new Todo { Text = text, Id = Items.Count });
+        await Task.CompletedTask;
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "family": "todopia-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::320005330299:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "todopia-container",
+      "image": "320005330299.dkr.ecr.us-east-1.amazonaws.com/todopia-react:latest",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true
+    }
+  ]
+}

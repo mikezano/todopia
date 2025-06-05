@@ -1,0 +1,12 @@
+﻿form{
+    display:flex;
+    gap:1rem;
+}
+
+form input{
+    flex:1;
+}
+
+form button{
+    width:4rem;
+}

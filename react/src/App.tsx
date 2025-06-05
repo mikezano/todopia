@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
+import { useScreenSize } from "./components/ScreenSize";
 import { TodoForm } from "./components/TodoForm";
 import { TodoList } from "./components/TodoList";
 import type { TodoItem } from "./interface/TodoItem";
@@ -8,6 +9,7 @@ import viteLogo from "/vite.svg";
 
 function App() {
   const [count, setCount] = useState(0);
+  const { width, height } = useScreenSize();
   const [items, setItems] = useState<TodoItem[]>([
     {
       id: "apple",

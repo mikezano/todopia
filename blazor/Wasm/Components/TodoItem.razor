@@ -1,0 +1,17 @@
+﻿
+<li>
+    <input type="checkbox" />
+    <label>@Item?.Text</label>
+    <button @onclick="()=>HandleDelete(Item?.Id)">Delete</button>
+</li>
+
+@code {
+    [Parameter] public Todo? Item { get; set; }
+
+    [Parameter] public EventCallback<int?> OnDelete { get; set; }
+
+    private async void HandleDelete(int? id)
+    {
+        await OnDelete.InvokeAsync(id);
+    }
+}

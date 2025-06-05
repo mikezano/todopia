@@ -1,0 +1,18 @@
+﻿<form novalidate>
+    <input type="search" @bind="Text" @ref="inputElement" />
+    <button @onclick="HandleAdd" type="button" >Add</button>
+</form>
+
+@code {
+    [Parameter] public EventCallback<string> OnAdd { get; set; }
+    public string Text { get; set; } = String.Empty;
+    private ElementReference inputElement;
+
+
+    private async Task HandleAdd()
+    {
+        await OnAdd.InvokeAsync(this.Text);
+        this.Text = String.Empty;
+        await inputElement.FocusAsync();
+    }
+}
