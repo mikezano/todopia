@@ -8,7 +8,7 @@
   "containerDefinitions": [
     {
       "name": "todopia-container",
-      "image": "320005330299.dkr.ecr.us-east-1.amazonaws.com/todopia-react:latest",
+      "image": "320005330299.dkr.ecr.us-east-2.amazonaws.com/todopia-react:latest",
       "portMappings": [
         {
           "containerPort": 80,

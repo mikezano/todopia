@@ -1,0 +1,32 @@
+	apiVersion: app/v1
+	kind: Deployment
+	metadata:
+	  name: react-app
+	spec:
+	  replicas: 3
+	  selector:
+	    matchLabels:
+	      app: react-app
+	  template:
+	    metadata:
+	      labels:
+	        app: react-app
+	    spec:
+	      containers:
+	      - name: react-container
+	        image: my-react-app:latest
+	        ports:
+	        - containerPort: 3000
+	        env:
+	        - name: REACT_APP_API_URL
+          value: "http://api.example.com"
+          - name: MESSAGE
+            valueFrom:
+              configMapKeyRef:
+                name: react-config
+                key: message
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: react-secret
+                key: API_KEY
