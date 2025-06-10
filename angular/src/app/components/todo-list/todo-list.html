@@ -1,0 +1,3 @@
+@for(todo of todosList; track todo.id){
+<app-todo-item [item]="todo" (onDelete)="handleDelete($event)" />
+}

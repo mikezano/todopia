@@ -1,1 +1,5 @@
-<p>todo-item works!</p>
+<li class="todo-item">
+  <input [id]="Item.id" type="checkbox" />
+  <label>{{Item.text}}</label>
+  <button (click)="delete()">Delete</button>
+</li>

@@ -178,7 +178,8 @@
 </style>
 
 <main class="main">
-  <app-todo-item></app-todo-item>
+  <app-todo-item [item]="item"></app-todo-item>
+  <app-todo-list [todos]="todos" (onDelete)="handleDelete($event)" />
   <div class="content">
     <div class="left-side">
       <svg
