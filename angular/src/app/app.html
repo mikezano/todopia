@@ -72,6 +72,11 @@
     position: relative;
   }
 
+  main.todo {
+    display: block;
+    border: 1px solid black;
+  }
+
   .angular-logo {
     max-width: 9.2rem;
   }
@@ -177,9 +182,12 @@
   }
 </style>
 
-<main class="main">
+<main class="todo">
+  <app-todo-form (onAdd)="handleAdd($event)" />
   <app-todo-item [item]="item"></app-todo-item>
   <app-todo-list [todos]="todos" (onDelete)="handleDelete($event)" />
+</main>
+<main class="main">
   <div class="content">
     <div class="left-side">
       <svg

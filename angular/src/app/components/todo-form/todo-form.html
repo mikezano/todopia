@@ -1,0 +1,10 @@
+<form novalidate>
+  <input
+    type="text"
+    placeholder="What needs to be done?"
+    name="todoText"
+    [formControl]="todoText"
+    required
+  />
+  <button type="button" (click)="handleAdd()">Add</button>
+</form>

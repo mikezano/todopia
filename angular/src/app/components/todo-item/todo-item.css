@@ -1,4 +1,9 @@
 .todo-item {
   display: flex;
+  align-items: center;
+  margin: 1rem;
   gap: 1rem;
+  & label {
+    flex: 1;
+  }
 }
